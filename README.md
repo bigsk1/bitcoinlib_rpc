@@ -15,13 +15,13 @@ Linux ( tested in WSL2 Ubuntu )
 ## Installation and Setup
 
 - Install Python 3.10 (3.11 might work but is untested). You can create a conda environment with Python 3.10.4.
-- Install bitcoinlib: `pip install bitcoinlib`.
-- Install required dependencies: `sudo apt install build-essential python3-dev libgmp3-dev`.
+- Install bitcoinlib: `pip install bitcoinlib`
+- Install required dependencies: `sudo apt install build-essential python3-dev libgmp3-dev`
 
 ### Create Wallet
 
 - Open `create_test_wallet.py` and change the wallet name at the bottom (avoid spaces).
-- Run `python create_test_wallet.py`.
+- Run `python create_test_wallet.py`
 - You will get a `.txt` file with wallet details, including the private key in WIF format.
 
 ### Set Environment Variables
@@ -61,7 +61,7 @@ curl --user rpc_user_name:rpc_password --data-binary '{"jsonrpc": "1.0", "id":"c
 ### Fund Your Wallet
 
 - Send funds to your new wallet's public address (from the .txt file).
-- Wait for confirmations on a block explorer or run python wallet_scan_details.py (enter the correct wallet name).
+- Wait for confirmations on a block explorer or run `python wallet_scan_details.py` (enter the correct wallet name).
 
 ### Prepare and Send Transaction
 
@@ -69,7 +69,7 @@ curl --user rpc_user_name:rpc_password --data-binary '{"jsonrpc": "1.0", "id":"c
 - Add your wallet name, public address, sender's address, fee, sending amounts, and your message (less than 80 bytes).
 - Run the script to send your transaction.
 
-When you're ready, run python btcmessage_rpc.py. This script uses the wallet you created in bitcoinlib, gets it up to date with UTXOs, creates the transaction, extracts the raw transaction hex, and then sends it to your Bitcoin node for broadcasting. If successful, you will see the TXID and the raw transaction hex.
+When you're ready, run `python btcmessage_rpc.py`  This script uses the wallet you created in bitcoinlib, gets it up to date with UTXOs, creates the transaction, extracts the raw transaction hex, and then sends it to your Bitcoin node for broadcasting. If successful, you will see the TXID and the raw transaction hex.
 
 Copy your TXID and paste it in a block explorer like Mempool to see your OP_RETURN message and details.
 
