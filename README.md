@@ -1,6 +1,12 @@
-# bitcoinlib_rpc
-Use your Bitcoin node (like Umbrel) and bitcoinlib in Python to create a wallet and send `OP_RETURN` messages in Bitcoin transactions.
-Linux ( tested in WSL2 Ubuntu )
+# bitcoinlib RPC
+Use your locally hosted Bitcoin node (like Umbrel) and bitcoinlib in Python to create a wallet and send `OP_RETURN` message in a Bitcoin transaction.
+Linux ( tested in WSL2 Ubuntu on one machine and umbrel bitcoin node on your local network like a Raspiberry Pi )
+
+<p align="center">
+  <img src="OP_RETURN_message.png" alt="OP_RETURN Message">
+</p>
+
+https://mempool.space/tx/aceee291b364905098aa28019c6521b9941daa1104772bad358e1334e1bd19a7
 
 ## Overview
 
@@ -27,6 +33,7 @@ Linux ( tested in WSL2 Ubuntu )
 ### Set Environment Variables
 
 Added your details and run the following to your terminal or you can add the secrets to your `.bashrc`
+If using umbrel or similar select bitcoin node, connect, RPC local network credintials
 
 ```bash
 export BITCOIN_NODE_HOST='your_node_ip'
@@ -36,7 +43,7 @@ export BITCOIN_RPC_PASSWORD='your_rpc_password'
 export MY_BTC_PRIVATE_KEY='your_private_key_here'
 ```
 
-### Configure Bitcoin Node
+### Configure Bitcoin RPC Connection in bitcoinlib
 
 - Edit ~/.bitcoinlib/bitcoin.conf and add your details:
 
@@ -61,17 +68,17 @@ curl --user rpc_user_name:rpc_password --data-binary '{"jsonrpc": "1.0", "id":"c
 ### Fund Your Wallet
 
 - Send funds to your new wallet's public address (from the .txt file).
-- Wait for confirmations on a block explorer or run `python wallet_scan_details.py` (enter the correct wallet name).
+- Wait for confirmations on a block explorer or run `python wallet_scan_details.py` (enter the correct wallet name inside file).
 
 ### Prepare and Send Transaction
 
-- Open btcmessage_rpc.py.
+- Open btcmessage_rpc.py
 - Add your wallet name, public address, sender's address, fee, sending amounts, and your message (less than 80 bytes).
-- Run the script to send your transaction.
+- Run the script to send your transaction when ready.
 
-When you're ready, run `python btcmessage_rpc.py`  This script uses the wallet you created in bitcoinlib, gets it up to date with UTXOs, creates the transaction, extracts the raw transaction hex, and then sends it to your Bitcoin node for broadcasting. If successful, you will see the TXID and the raw transaction hex.
+Run `python btcmessage_rpc.py`  This script uses the wallet you created in bitcoinlib, gets it up to date with UTXOs, creates the transaction, extracts the raw transaction hex, and then sends it to your Bitcoin node for broadcasting. If successful, you will see the TXID and the raw transaction hex.
 
-Copy your TXID and paste it in a block explorer like Mempool to see your OP_RETURN message and details.
+Copy your TXID and paste it in a block explorer like Mempool https://mempool.space/ to see your OP_RETURN message and details.
 
 
 ## Disclaimer
